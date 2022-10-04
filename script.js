@@ -10,6 +10,8 @@ function initialize () {
 
     buttonColor1.className = "color selected";
 
+    generatePixelsBoard();
+    applyStoragedPixelColors ();
 }
 function keepColorPallets () {
     const buttonColor1 = document.getElementById("button-color1");
@@ -100,7 +102,7 @@ function generatePixelsBoard () {
 
     }
 }
-generatePixelsBoard();
+
 
 const getButtonColor1 = document.getElementById("button-color1");
 const getButtonColor2 = document.getElementById("button-color2");
@@ -134,6 +136,7 @@ function paintPixelBoard (event) {
     const getColor = getSelected.style.backgroundColor;
     
     event.target.style.backgroundColor = getColor;
+    keepColorPixels ();
 }
 board.addEventListener("click", paintPixelBoard);
 
@@ -146,5 +149,33 @@ function clearBoard () {
     for (let index = 0; index < getPixels.length; index+=1) {
         getPixels[index].style.backgroundColor = "white";        
     }
+    keepColorPixels ();
 }
 buttonClear.addEventListener("click", clearBoard);
+
+function keepColorPixels () {
+    const getPixels = document.getElementById("pixel-board").children;
+    let arrayColorPixels = [];
+
+    for (let index = 0; index < getPixels.length; index+=1) {
+        if (getPixels[index].style.backgroundColor === "") {
+            arrayColorPixels.push("white");
+        } else {
+            arrayColorPixels.push(getPixels[index].style.backgroundColor);   
+        }     
+    }    
+    // localStorage.setItem("pixelBoard", arrayColorPixels);
+    // console.log(arrayColorPixels);
+    localStorage.setItem("pixelBoard", JSON.stringify(arrayColorPixels));
+}
+
+function applyStoragedPixelColors () {
+    const getPixels = document.querySelectorAll(".pixel");
+    const arrayStoredColors = JSON.parse(localStorage.getItem("pixelBoard"));
+    console.log(getPixels);
+    console.log(arrayStoredColors);
+    for (let index = 0; index < getPixels.length; index+=1) {
+        getPixels[index].style.backgroundColor = arrayStoredColors[index];
+        
+    }
+}
