@@ -9,8 +9,12 @@ function initialize () {
     keepColorPallets ();
 
     buttonColor1.className = "color selected";
+    let size = 5;
+    if (localStorage.getItem("boardSize")) {
+        size = localStorage.getItem("boardSize");
+    }
+    generatePixelsBoard(size);
 
-    generatePixelsBoard();
     if (localStorage.getItem("pixelBoard")) {
         applyStoragedPixelColors ();
     } else {
@@ -95,9 +99,11 @@ function applyRandomColor (event) {
 }
 buttonRandomColor.addEventListener("click", applyRandomColor);
 
-function generatePixelsBoard () {
+function generatePixelsBoard (boardSize) {
     const board = document.getElementById("pixel-board");
-    for (let index = 0; index < 25; index += 1) {
+    const pixelsQuantity = boardSize * boardSize;
+    
+    for (let index = 0; index <  pixelsQuantity; index += 1) {
         let pixel = document.createElement("button");
         pixel.className = "pixel";
         pixel.style.backgroundColor = "white";
@@ -106,6 +112,7 @@ function generatePixelsBoard () {
         board.appendChild(pixel);
 
     }
+    board.style.width = 40 * boardSize + "px";
 }
 
 
@@ -183,3 +190,32 @@ function applyStoragedPixelColors () {
         getPixels[index].style.backgroundColor = arrayStoredColors[index];        
     }
 }
+
+function deleteBoard () {
+    const board = document.getElementById("pixel-board");
+    const quantityChilds = document.querySelectorAll(".pixel");
+    localStorage.removeItem("pixelBoard");
+
+    for (let index = 0; index < quantityChilds.length; index+=1) {
+        board.lastChild.remove();        
+    }
+}
+
+const buttonGenerateBoard = document.getElementById("generate-board");
+
+function generateBoard () {
+    const input = document.getElementById("board-size");
+    const inputValue = input.value;
+
+    console.log(inputValue);
+    if (inputValue === "") {
+        alert("Board inválido!");
+    } else {
+
+        localStorage.setItem("boardSize", inputValue);
+        deleteBoard ();
+        generatePixelsBoard(inputValue);
+    }
+
+}
+buttonGenerateBoard.addEventListener("click", generateBoard)
