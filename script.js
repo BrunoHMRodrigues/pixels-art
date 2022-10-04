@@ -1,12 +1,15 @@
 window.onload = initialize ();
 
 function initialize () {
-    // const buttonColor1 = document.getElementById("button-color1");
+    const buttonColor1 = document.getElementById("button-color1");
     // const buttonColor2 = document.getElementById("button-color1");
     // const buttonColor3 = document.getElementById("button-color1");
     // const buttonColor4 = document.getElementById("button-color1");
 
     keepColorPallets ();
+
+    buttonColor1.className = "color selected";
+
 }
 function keepColorPallets () {
     const buttonColor1 = document.getElementById("button-color1");
