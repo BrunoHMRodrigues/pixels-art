@@ -126,3 +126,13 @@ getButtonColor1.addEventListener("click", selectButton);
 getButtonColor2.addEventListener("click", selectButton);
 getButtonColor3.addEventListener("click", selectButton);
 getButtonColor4.addEventListener("click", selectButton);
+
+const board = document.getElementById("pixel-board");
+
+function paintPixelBoard (event) {
+    const getSelected = document.querySelector(".selected");
+    const getColor = getSelected.style.backgroundColor;
+    
+    event.target.style.backgroundColor = getColor;
+}
+board.addEventListener("click", paintPixelBoard);
