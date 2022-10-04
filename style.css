@@ -92,9 +92,33 @@ h1 {
     font-weight: 900;
 }
 
+#section-choose-size {
+    margin: auto;
+    margin-top: 20px;
+    width: max-content;
+    padding: 5px;
+
+}
 #board-size {
     display: inline-block;
+    width: 120px;
+    height: 30px;
+    text-align: center;
+    font-size: 25px;
+    border: 1px solid black;
+    vertical-align: middle;
 }
 #generate-board {
     display: inline-block;
+    width: 70px;
+    height: 25px;
+    border: 1px solid white;
+    font-weight: 900;
+    color: white;
+    background-image: radial-gradient(#43b692, #099773);
 }
+::placeholder { 
+    font-size: 13px; 
+    
+    
+  }
