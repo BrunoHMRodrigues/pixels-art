@@ -136,3 +136,15 @@ function paintPixelBoard (event) {
     event.target.style.backgroundColor = getColor;
 }
 board.addEventListener("click", paintPixelBoard);
+
+
+const buttonClear = document.getElementById("clear-board");
+
+function clearBoard () {
+    const getPixels = document.getElementById("pixel-board").children;
+
+    for (let index = 0; index < getPixels.length; index+=1) {
+        getPixels[index].style.backgroundColor = "white";        
+    }
+}
+buttonClear.addEventListener("click", clearBoard);
