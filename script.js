@@ -84,3 +84,17 @@ function applyRandomColor (event) {
     localStorage.setItem("colorPalette", colorPallet);
 }
 buttonRandomColor.addEventListener("click", applyRandomColor);
+
+function generatePixelsBoard () {
+    const board = document.getElementById("pixel-board");
+    for (let index = 0; index < 25; index += 1) {
+        let pixel = document.createElement("button");
+        pixel.className = "pixel";
+        pixel.style.backgroundColor = "white";
+        pixel.style.display = "inline-block";
+
+        board.appendChild(pixel);
+
+    }
+}
+generatePixelsBoard();
