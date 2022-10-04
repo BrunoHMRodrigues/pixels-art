@@ -63,10 +63,12 @@ function applyRandomColor (event) {
     const buttonColor3 = document.getElementById("button-color3");
     const buttonColor4 = document.getElementById("button-color4");
     let arraybuttons = [buttonColor2,buttonColor3,buttonColor4];
-    
+    let colorPallet = [];
+
     for (let index = 1; index <= arraybuttons.length; index+=1) {  
         let randomColor = generateRandomColors();    
-        
+        colorPallet.push(randomColor);
+
         if (index === 1) {
             buttonColor2.style.backgroundColor = randomColor;
             localStorage.setItem("palletColor2Storaged", randomColor);
@@ -79,5 +81,6 @@ function applyRandomColor (event) {
         }
         
     }
+    localStorage.setItem("colorPalette", colorPallet);
 }
 buttonRandomColor.addEventListener("click", applyRandomColor);
