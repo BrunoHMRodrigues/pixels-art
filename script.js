@@ -101,8 +101,15 @@ buttonRandomColor.addEventListener("click", applyRandomColor);
 
 function generatePixelsBoard (boardSize) {
     const board = document.getElementById("pixel-board");
-    const pixelsQuantity = boardSize * boardSize;
     
+    
+    if (boardSize < 5) {
+        boardSize = 5;
+    } else if (boardSize > 50) {
+        boardSize = 50;
+    }
+    const pixelsQuantity = boardSize * boardSize;
+
     for (let index = 0; index <  pixelsQuantity; index += 1) {
         let pixel = document.createElement("button");
         pixel.className = "pixel";
