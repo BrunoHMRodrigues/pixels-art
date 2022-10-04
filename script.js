@@ -50,3 +50,34 @@ function keepColorPallets () {
         buttonColor4.style.backgroundColor = "blue";
     }
 }
+
+const buttonRandomColor = document.getElementById("button-random-color");
+
+function generateRandomColors () {
+    let randomColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+    return randomColor;
+}
+
+function applyRandomColor (event) {
+    const buttonColor2 = document.getElementById("button-color2");
+    const buttonColor3 = document.getElementById("button-color3");
+    const buttonColor4 = document.getElementById("button-color4");
+    let arraybuttons = [buttonColor2,buttonColor3,buttonColor4];
+    
+    for (let index = 1; index <= arraybuttons.length; index+=1) {  
+        let randomColor = generateRandomColors();    
+        
+        if (index === 1) {
+            buttonColor2.style.backgroundColor = randomColor;
+            localStorage.setItem("palletColor2Storaged", randomColor);
+        } else if (index === 2) {
+            buttonColor3.style.backgroundColor = randomColor;
+            localStorage.setItem("palletColor3Storaged", randomColor);
+        } else {
+            buttonColor4.style.backgroundColor = randomColor;
+            localStorage.setItem("palletColor4Storaged", randomColor);
+        }
+        
+    }
+}
+buttonRandomColor.addEventListener("click", applyRandomColor);
