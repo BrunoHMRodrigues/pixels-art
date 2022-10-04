@@ -11,7 +11,12 @@ function initialize () {
     buttonColor1.className = "color selected";
 
     generatePixelsBoard();
-    applyStoragedPixelColors ();
+    if (localStorage.getItem("pixelBoard")) {
+        applyStoragedPixelColors ();
+    } else {
+        keepColorPixels ();
+    }   
+    
 }
 function keepColorPallets () {
     const buttonColor1 = document.getElementById("button-color1");
@@ -172,10 +177,9 @@ function keepColorPixels () {
 function applyStoragedPixelColors () {
     const getPixels = document.querySelectorAll(".pixel");
     const arrayStoredColors = JSON.parse(localStorage.getItem("pixelBoard"));
-    console.log(getPixels);
-    console.log(arrayStoredColors);
+    // console.log(getPixels);
+    // console.log(arrayStoredColors);
     for (let index = 0; index < getPixels.length; index+=1) {
-        getPixels[index].style.backgroundColor = arrayStoredColors[index];
-        
+        getPixels[index].style.backgroundColor = arrayStoredColors[index];        
     }
 }
