@@ -101,3 +101,28 @@ function generatePixelsBoard () {
     }
 }
 generatePixelsBoard();
+
+const getButtonColor1 = document.getElementById("button-color1");
+const getButtonColor2 = document.getElementById("button-color2");
+const getButtonColor3 = document.getElementById("button-color3");
+const getButtonColor4 = document.getElementById("button-color4");
+
+function selectButton (event) {
+    const currentSelected = document.querySelector(".selected");
+
+    currentSelected.className = "color";
+
+    if (event.target === getButtonColor1) {
+        getButtonColor1.className = "color selected";
+    } else if (event.target === getButtonColor2) {
+        getButtonColor2.className = "color selected";
+    }else if (event.target === getButtonColor3) {
+        getButtonColor3.className = "color selected";
+    } else {
+        getButtonColor4.className = "color selected";
+    }
+}
+getButtonColor1.addEventListener("click", selectButton);
+getButtonColor2.addEventListener("click", selectButton);
+getButtonColor3.addEventListener("click", selectButton);
+getButtonColor4.addEventListener("click", selectButton);
